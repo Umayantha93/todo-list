@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\TodoCreateRequest;
 
 class TodoController extends Controller
 {
@@ -18,22 +18,22 @@ class TodoController extends Controller
         return view('todos.create');
     }
 
-    public function store(Request $request) {
+    public function store(TodoCreateRequest $request) {
 
-        $rules = [
-            'title' => 'required|max:255'
-        ];
+        // $rules = [
+            
+        // ];
 
-        $messages = [
-            'title.required' => "Title shouldn't be empty",
-            'title.max' => "Todo list should not be greater than 255 characters"
-        ];
-        $validator = Validator::make($request->all(), $rules, $messages);
-        if ($validator->fails()) {
-            return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        // $messages = [
+        //     'title.required' => "Title shouldn't be empty",
+        //     'title.max' => "Todo list should not be greater than 255 characters"
+        // ];
+        // $validator = Validator::make($request->all(), $rules, $messages);
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
         // $request->validate([
         //     'title' => 'Required'
         // ]);
