@@ -8,6 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-    @yield('content')
+    <div class="text-center flex justify-center pt-10">
+        <div class="w-1/3 border border-gray-400 py-4">
+            @yield('content')
+        </div>
+    </div>   
 </body>
 </html>
