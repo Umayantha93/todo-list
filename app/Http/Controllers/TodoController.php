@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\TodoCreateRequest;
 use Illuminate\Http\Request;
@@ -18,8 +19,8 @@ class TodoController extends Controller
 
     public function index() 
     {
-        $todos = Todo::orderBy('completed')->get();
-
+        // $todos = Todo::orderBy('completed')->get();
+        $todos = auth()->user()->todos->sortBy('completed');
         return view('todos.index', compact('todos'));
     }
 
@@ -30,7 +31,9 @@ class TodoController extends Controller
 
     public function store(TodoCreateRequest $request) 
     {
-        Todo::create($request->all());
+        // dd(auth()->user()->todos());
+        auth()->user()->todos()->create($request->all());
+        // Todo::create($request->all());
         return redirect()->back()->with('message', 'Todo Created Successfully');
     }
 
