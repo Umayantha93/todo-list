@@ -11,6 +11,11 @@ class TodoController extends Controller
 {
     //
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() 
     {
         $todos = Todo::orderBy('completed')->get();
@@ -37,7 +42,7 @@ class TodoController extends Controller
     public function update(TodoCreateRequest $request, Todo $todo) 
     {
         $todo->update(['title' => $request->title]);
-        return redirect(route('todo.index'))->with('message', 'Updated!');
+        return redirect(route('todos.index'))->with('message', 'Updated!');
     }
 
     public function complete(Todo $todo){
@@ -52,7 +57,7 @@ class TodoController extends Controller
         return redirect()->back()->with('message', "Task marked as Incomplete!");
     } 
 
-    public function delete(Todo $todo) {
+    public function destroy(Todo $todo) {
         $todo->delete();
 
         return redirect()->back()->with('message', "Delete Completed!");
