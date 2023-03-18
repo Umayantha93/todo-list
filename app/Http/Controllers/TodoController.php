@@ -24,6 +24,13 @@ class TodoController extends Controller
         return view('todos.index', compact('todos'));
     }
 
+    public function show(Todo $todo) {
+
+        
+        return view('todos.show', compact('todo'));
+
+    }
+
     public function create() 
     {
         return view('todos.create');
@@ -31,6 +38,7 @@ class TodoController extends Controller
 
     public function store(TodoCreateRequest $request) 
     {
+        // dd($request->all());
         // dd(auth()->user()->todos());
         auth()->user()->todos()->create($request->all());
         // Todo::create($request->all());
@@ -61,6 +69,7 @@ class TodoController extends Controller
     } 
 
     public function destroy(Todo $todo) {
+
         $todo->delete();
 
         return redirect()->back()->with('message', "Delete Completed!");

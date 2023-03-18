@@ -25,12 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('todos', TodoController::class);
     
 });
 
 require __DIR__.'/auth.php';
 
-Route::resource('todos', TodoController::class);
+
 // Route::get('todos', [TodoController::class, 'index'])->name('todo.index');
 // Route::get('todos/create', [TodoController::class, 'create']);
 // Route::post('todos/create', [TodoController::class, 'store']);
