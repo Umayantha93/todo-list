@@ -24,11 +24,11 @@
             @endif
                 <div>  
                     <a href="{{route('todos.edit', $todo->id)}}"  class="text-orange-400 cursor-pointer">
-                        <span class="fas fa-edit px-2" /> 
+                        <span class="fas fa-pen px-2" /> 
                     </a>
 
 
-                    <span class="fas fa-trash text-red-500 px-2 cursor-pointer" 
+                    <span class="fas fa-close text-red-500 px-2 cursor-pointer" 
                     onclick="event.preventDefault();
                         if(confirm('Are you really want to delete?')){
                             document.getElementById('form-delete-{{$todo->id}}')
